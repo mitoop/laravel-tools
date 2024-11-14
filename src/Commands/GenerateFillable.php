@@ -26,9 +26,9 @@ class GenerateFillable extends Command
             version_compare($this->getLaravel()->version(), '10.30.0', '<')) {
             $grammar = new class extends MysqlGrammar
             {
-                public function compileColumnListing($table): string
+                public function compileColumnListing()
                 {
-                    return parent::compileColumnListing($table).' ORDER BY ordinal_position';
+                    return parent::compileColumnListing().' ORDER BY ordinal_position';
                 }
             };
 
