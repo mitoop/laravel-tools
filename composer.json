@@ -1,0 +1,24 @@
+{
+    "name": "mitoop/laravel-tools",
+    "type": "library",
+    "require": {
+        "illuminate/support": "^6|^7|^8|^9|^10|^11",
+        "illuminate/console": "^6|^7|^8|^9|^10|^11",
+        "illuminate/database": "^6|^7|^8|^9|^10|^11"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Mitoop\\LaravelTools\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "mitoop",
+            "email": "me@mitoop.com"
+        }
+    ],
+    "require-dev": {
+        "laravel/pint": "^1.18"
+    }
+}
