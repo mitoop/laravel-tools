@@ -20,8 +20,8 @@ class GenerateFillable extends Command
         $table = $this->argument('table');
         $connection = $this->argument('connection') ?? Config::get('database.default');
 
-        $database = DB::connection($connection);
-        if ($database->getDriverName() === 'mysql'
+        $db = DB::connection($connection);
+        if ($db->getDriverName() === 'mysql'
             &&
             version_compare($this->getLaravel()->version(), '10.30.0', '<')) {
             $grammar = new class extends MysqlGrammar
@@ -32,10 +32,10 @@ class GenerateFillable extends Command
                 }
             };
 
-            $database->setSchemaGrammar($grammar->setConnection($database)->setTablePrefix($database->getTablePrefix()));
+            $db->setSchemaGrammar($grammar->setConnection($db)->setTablePrefix($db->getTablePrefix()));
         }
 
-        $columns = $database->getSchemaBuilder()->getColumnListing($table);
+        $columns = $db->getSchemaBuilder()->getColumnListing($table);
         $columns = array_diff($columns, ['id', 'created_at', 'updated_at', 'deleted_at']);
 
         $fillable = "protected \$fillable = [\n    '".implode("',\n    '", $columns)."'\n];";
